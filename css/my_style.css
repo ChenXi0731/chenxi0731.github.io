@@ -32,3 +32,23 @@ a{
     color: #bd5d38;
     text-decoration: none;
 }
+
+table{
+    width: 100%;
+}
+
+th,td{
+    text-align:left;
+    border: 1px solid black;
+}
+
+th:nth-child(odd){
+    color:#ffffff;
+    background-color: #6c6c6c;
+}
+
+td:nth-child(odd){
+    color:#ffffff;
+    background-color: #6c6c6c;
+}
+
