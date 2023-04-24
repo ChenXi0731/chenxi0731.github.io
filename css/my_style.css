@@ -18,6 +18,10 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1{
     text-transform: none;
 }
 
+.linkcolor01{
+    color:#FFE66F;
+}
+
 a{
     color:darkred;
     text-decoration: none;
