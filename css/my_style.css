@@ -3,8 +3,11 @@
     --bs-primary-rgb: 36, 128, 103;
     --bs-secondary: #a50704;
     --bs-secondary-rgb: 165, 7, 4;
+    --bs-proprimary: #248067;
+    --bs-proprimary: 36, 128, 103;
 }
 body{
+    background-color: #248067;
     font-family: 'Noto Sans TC',sans-serif;
 }
 
@@ -56,3 +59,33 @@ td:nth-child(odd){
     background-color: #6c6c6c;
 }
 
+.navbar_href_color{
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.iconwh{
+  weight:30px;
+  height: 30px;
+  position: relative;
+  top: 3.5px;
+}
+
+.bgcolor{
+  background-color: #248067;
+}
+
+.text-custom-display{
+  color: #76ccb5;
+  text-decoration: none;
+}
+
+.text-custom-display:hover{
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.text-body-custom-display{
+  color: #76ccb5;
+  text-decoration: none;
+}
