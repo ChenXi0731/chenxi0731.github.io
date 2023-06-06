@@ -115,63 +115,34 @@
       </symbol>
     </svg>
 
-    <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
-      <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
-              id="bd-theme"
-              type="button"
-              aria-expanded="false"
-              data-bs-toggle="dropdown"
-              aria-label="Toggle theme (auto)">
-        <svg class="bi my-1 theme-icon-active" width="1em" height="1em"><use href="#circle-half"></use></svg>
-        <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
-      </button>
-      <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
-        <li>
-          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
-            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#sun-fill"></use></svg>
-            Light
-            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
-          </button>
-        </li>
-        <li>
-          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
-            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg>
-            Dark
-            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
-          </button>
-        </li>
-        <li>
-          <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
-            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#circle-half"></use></svg>
-            Auto
-            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
-          </button>
-        </li>
-      </ul>
-    </div>
+    
 
 
 <header class="site-header sticky-top py-1 ">
   <nav class="container d-flex flex-column flex-md-row justify-content-between">
     <a class="py-2" href="#" aria-label="Product">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto" role="img" viewBox="0 0 24 24"><title>Product</title><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="30" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto" role="img" viewBox="0 0 24 24"><title>Product</title><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/></svg>
     </a>
     <a class="py-2 d-none d-md-inline-block" href="#self-trip">獨旅</a>
     <a class="py-2 d-none d-md-inline-block" href="#club">社團</a>
     <a class="py-2 d-none d-md-inline-block" href="#volunteer">志工</a>
     <a class="py-2 d-none d-md-inline-block" href="#university">大學</a>
-    <a href="https://instagram.com/38.oxc" target="_blank"><i class="fa-brands fa-square-instagram iconwh"></i></a>
+    <a class="py-2 d-none d-md-inline-block navbar-icons" href="https://portaly.cc/chenxi0731" target="_blank">
+      <i class="fa-solid fa-globe d-block mx-auto"></i>
+    </a>    
   </nav>
 </header>
 
 <main>
   <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
-    <div class="text-bg-light col-md-5 p-lg-5 mx-auto my-5" id="maindiv">
-      <h1 class="display-4 fw-normal">凌晨有嘻哈</h1>
-      <p class="lead fw-normal">攜著過去 走向未來</p>
-      <a class="btn btn-outline-secondary" href="#">人生的旅程起步</a>
+    <div class="image-container">
+      <img src="assets/img/campfire.jpg" alt="圖片">
+      <div class="text-overlay">
+        <h1 class="display-4 fw-normal">凌晨有嘻哈</h1>
+        <p class="lead fw-normal">攜著過去 走向未來</p>
+        <a class="btn btn-outline-secondary" href="https://instagram.com/38.oxc" target="_blank">人生的旅程起步</a>
+      </div>
     </div>
-
   </div>
 
   <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
@@ -180,14 +151,15 @@
         <h2 class="display-5">獨自旅行</h2>
         <p class="lead">獨步世界 隨心所欲</p>
       </div>
-      <div class="bg-body-tertiary shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+      <img class="mx-auto" style="width: 96%; height: 72%; border-radius: 21px 21px 0 0;" src="assets/img/七星潭.jpg">
+  
     </div>
     <div class="text-bg-light bg-body-tertiary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden" id="club">
       <div class="my-3 p-3">
         <h2 class="display-5">社團生活</h2>
         <p class="lead">團隊合作 精彩課外</p>
       </div>
-      <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+      <a href="https://www.tiki-toki.com/timeline/entry/1946732/-/" target="_blank"><img class="mx-auto" style="width: 96%; height: 72%; border-radius: 21px 21px 0 0;" src="assets/img/博愛社.JPG"></a>
     </div>
   </div>
 
@@ -197,14 +169,14 @@
         <h2 class="display-5">志工旅程</h2>
         <p class="lead">捨己助他 善心人間</p>
       </div>
-      <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+      <a href="https://www.instagram.com/chsh_evironmental_protection/" target="_blank"><img class="mx-auto" style="width: 96%; height: 72%; border-radius: 21px 21px 0 0;" src="assets/img/環保隊.JPG"></a>
     </div>
     <div class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden" id="university">
       <div class="my-3 py-3">
         <h2 class="display-5">大學生活</h2>
         <p class="lead">可動可靜 瘋狂逐夢</p>
       </div>
-      <div class="bg-body-tertiary shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
+      <a href="https://youtu.be/dfJfC47qXls" target="_blank"><img class="mx-auto" style="width: 96%; height: 72%; border-radius: 21px 21px 0 0;" src="assets/img/Dance.jpg"></a>
     </div>
   </div>
 </main>
