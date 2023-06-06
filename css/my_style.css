@@ -1,10 +1,11 @@
 :root {
+    --bs-body-tertiary: #f8f9fa;
+    --bs-body-tertiary-rgb:248, 249, 250;
     --bs-primary: #248067;
     --bs-primary-rgb: 36, 128, 103;
     --bs-secondary: #a50704;
     --bs-secondary-rgb: 165, 7, 4;
-    --bs-proprimary: #248067;
-    --bs-proprimary: 36, 128, 103;
+
 }
 body{
     background-color: #ffffff;
@@ -88,4 +89,10 @@ td:nth-child(odd){
 .text-body-custom-display{
   color: #76ccb5;
   text-decoration: none;
+}
+
+#maindiv{
+  background-image: url('chacofon.github.io\assets\img\campfire.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
