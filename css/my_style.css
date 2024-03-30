@@ -27,8 +27,12 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1{
 }
 
 a{
-    color:darkred;
+    color:#248067;
     text-decoration: none;
+}
+
+a:hover{
+    color: #248067c5;
 }
 
 .imco{
@@ -141,4 +145,17 @@ td:nth-child(odd){
   width: 25px;
   height: auto;
   vertical-align: middle; /* 垂直居中 icon */
+}
+
+#life {
+  margin-bottom: 10px !important;
+}
+
+#life2 {
+  margin-bottom: 24px;
+}
+
+.imgArea {
+  width: 80%;
+  height: 100%;
 }
