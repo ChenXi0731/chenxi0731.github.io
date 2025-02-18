@@ -1,0 +1,356 @@
+body {
+    margin: 0;
+    font-family: "Noto Serif TC", serif;
+    font-optical-sizing: auto;
+    background-color: #2d4234;
+    color: white;
+}
+
+
+.holtwood-one-sc-regular {
+    font-family: "Holtwood One SC", serif;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1;
+    font-size: 8rem;
+    margin: 0;
+    position: absolute;
+    top: -20%;
+    transform: translateX(-50%);
+    /* &::before {
+        content: attr(data-storke);
+        position: absolute;
+        color: #FFD600;
+        -webkit-text-stroke: 10px #FFD600;
+        text-stroke: 10px #FFD600;
+        z-index: -1;
+    } */
+}
+
+.navbar {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(45, 66, 52, 0.9);
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.navbar-toggler{
+    background-color: #fff;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    background-image: url('image/0xchaLogo.webp');
+    background-size: cover;
+    background-position: center;
+    margin-right: 10px;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-family: "Black Ops One", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.navigation a {
+    color: white;
+    text-decoration: none;
+    margin-left: 2rem;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.navigation a:hover {
+    color: #ffd700;
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 2rem;
+    position: relative;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+.hero-content {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    /* 讓內容自動換行 */
+    justify-content: center;
+    /* 水平置中 */
+    align-items: center;
+    /* 垂直置中 */
+}
+
+.photo-container {
+    position: relative;
+    z-index: -2;
+    /* 圖片位於第二層 */
+    right: 30%;
+}
+
+.profile-photo {
+    width: 90%;
+    max-width: 400px;
+    border-radius: 10px;
+    filter: grayscale(100%);
+}
+
+.hero-title {
+    left: 53.5%;
+    color: white;
+    -webkit-text-stroke: 5px #000000;
+    z-index: -1;
+    text-align: right;
+}
+
+.hero-subtitle {
+    left: 55%;
+    color: #1D3A4A;
+    -webkit-text-stroke: 5px #FFD600;
+    z-index: -3;
+    text-align: right;
+}
+
+.description-container {
+    position: absolute;
+    bottom: -5%;
+    left: 0;
+    width: 100%;
+    height: 20rem;
+    padding: 1rem 2rem;
+    box-sizing: border-box;
+    background-color: #7B7B7C;
+    z-index: -4;
+}
+
+.description {
+    font-family: "Noto Serif TC", serif;
+    font-optical-sizing: auto;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    text-align: left;
+    max-width: 600px;
+    margin: 2% 5% 0 20%;
+}
+
+.remark {
+    font-family: "Noto Serif TC", serif;
+    font-optical-sizing: auto;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    text-align: left;
+    max-width: 400px;
+    margin: 3% 0 0 auto;
+    color: lightgray;
+}
+
+.section {
+    padding: 4rem 2rem;
+    text-align: center;
+    min-height: 100vh;
+}
+
+#about {
+    background-color: #FBF8F0;
+    height: 100vh;
+}
+
+.about-title {
+    text-align: left;
+    color: #000000;
+    font-family: "Noto Serif TC", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 6rem;
+    max-width: 600px;
+}
+
+.about-content {
+    text-align: left;
+    color: #000000;
+    font-family: "Noto Serif TC", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 1.5rem;
+    max-width: 600px;
+}
+
+.contact {
+    font-family: "Noto Serif TC", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    text-align: left;
+    color: #000000;
+    margin-top: 10%;
+}
+
+.contact h4 {
+    font-weight: 900;
+    font-size: 2rem;
+}
+
+.contact .content {
+    font-size: 1.8rem;
+    text-decoration: none;
+    color: #2d4234;
+}
+
+.contact .content:hover {
+    color: #e6b800;
+    text-decoration: none;
+}
+
+#expe {
+    background-color: #2d4234;
+}
+
+.timeline-img-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.timeline-img-container img {
+    max-width: 100%;
+    display: block;
+}
+
+.timeline-img-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.timeline-img-container:hover::before {
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: #2d4234;
+    opacity: 0.9;
+}
+
+#work {
+    background-color: #FBF8F0;
+    color: #000000;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+#scroll-top-btn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    background-color: #ffd700;
+    color: #2d4234;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+#scroll-top-btn:hover {
+    background-color: #e6b800;
+}
+
+@media (max-width: 768px) {
+    [class*="col-"] {
+        width: 100%;
+    }
+
+    .profile-photo{
+        max-width: 12rem;
+    }
+
+    .hero{
+        max-height: 30em;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+        -webkit-text-stroke: 0.5px #000000;
+    }
+
+    .hero-subtitle {
+        font-size: 3rem;
+        -webkit-text-stroke: 0.5px #FFD600;
+    }
+
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .description-container {
+        padding: 15px;
+        font-size: 14px;
+        max-height: 40%;
+        transform: translateY(15%);
+    }
+
+    .description{
+        margin: auto;
+        text-align: center;
+        font-size: 3.5vw;
+    }
+
+    #about-img {
+        opacity: 1;
+        max-width: 50vw;
+    }
+
+    .about-title{
+        font-size: 12vw;
+    }
+    .about-content{
+        font-size: 5vw;
+    }
+
+    .contact h4{
+        font-size: 5vw;
+    }
+
+    .contact .content{
+        font-size: 4vw;
+    }
+}
