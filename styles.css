@@ -230,6 +230,11 @@ body {
     background-color: #2d4234;
 }
 
+.card-body{
+    background-color: #F8F8F0;
+    display: block;
+}
+
 .timeline-img-container {
     position: relative;
     display: inline-block;
@@ -238,7 +243,13 @@ body {
 
 .timeline-img-container img {
     max-width: 100%;
-    display: block;
+}
+
+.timeline-img-container h2{
+    transform: translateY(-35vh);
+    color: #ffffff;
+    font-weight: 800;
+    opacity: 1;
 }
 
 .timeline-img-container::before {
@@ -255,6 +266,12 @@ body {
 }
 
 .timeline-img-container:hover::before {
+    display: inline-block;
+    content: attr(data-text);
+    color: #ffffff;
+    font-size: 500%;
+    font-weight: 900;
+    align-content: center;
     opacity: 1;
 }
 
