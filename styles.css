@@ -268,11 +268,14 @@ body {
 .timeline-img-container:hover::before {
     display: inline-block;
     content: attr(data-text);
-    color: #ffffff;
+    color: #ffbf00;
     font-size: 500%;
     font-weight: 900;
     align-content: center;
     opacity: 1;
+}
+.modal-title{
+    text-align: left;
 }
 
 .modal-content {
@@ -280,7 +283,12 @@ body {
     opacity: 0.9;
 }
 
-#work {
+.modal-body p{
+    font-size: 1vw;
+}
+
+
+#Portfolio {
     background-color: #FBF8F0;
     color: #000000;
 }
@@ -368,6 +376,10 @@ footer {
     }
 
     .contact .content{
+        font-size: 4vw;
+    }
+
+    .timeline-img-container:hover::before{
         font-size: 4vw;
     }
 }
