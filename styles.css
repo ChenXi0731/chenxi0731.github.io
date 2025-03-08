@@ -293,6 +293,59 @@ body {
     color: #000000;
 }
 
+#Portfolio h2{
+    font-size: 5vw;
+    font-weight: 700;
+}
+
+#Portfolio h3{
+    font-size: 2vw;
+    font-weight: 600;
+}
+
+.carousel-inner{
+    max-height: 70vh;
+}
+
+.carousel-item{
+    max-height: 70vh; 
+    position: relative;
+    overflow: hidden; 
+    align-items: center; 
+    justify-content: center;  
+}
+.carousel-item img{
+    transform: translateY(-25%);
+}
+
+#Portfolio .carousel-item img {
+    position: relative;
+  }
+  
+  #Portfolio .carousel-item::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  #Portfolio .carousel-caption {
+    z-index: 2;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+  }
+
+  #Portfolio .carousel-caption h5,
+  #Portfolio .carousel-caption p {
+    color: white !important;
+  }
+
+
 footer {
     text-align: center;
     padding: 1rem;
@@ -381,5 +434,14 @@ footer {
 
     .timeline-img-container:hover::before{
         font-size: 4vw;
+    }
+
+    #Portfolio h2{
+        font-size: 6vw;
+        font-weight: 500;
+    }
+
+    .carousel-item{
+        max-height: 100vh;
     }
 }
