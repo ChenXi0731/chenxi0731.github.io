@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>經驗池 - LIN CHEN XI</title>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Holtwood+One+SC&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans+TC:wght@100..900&family=Noto+Serif+TC:wght@200..900&family=Syne:wght@400..800&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="image/0xchaLogo.webp" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="expool.css">
+</head>
+<body>
+    <a href="index.html" class="back-to-main">
+        <i class="fas fa-arrow-left"></i> 返回主頁
+    </a>
+    
+    <header class="portfolio-header">
+        <div class="container text-center">
+            <h1 class="portfolio-title">經驗池</h1>
+            <p class="portfolio-subtitle">我的創意作品集與專業經驗</p>
+        </div>
+    </header>
+    
+    <section class="container">
+        <h2 class="section-title">我的作品集</h2>
+        <p class="section-description">這裡展示了我在各個領域的作品，包括設計、編程、視頻製作和原型設計。每個作品都代表了我的創意思維與專業技能。</p>
+        
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">全部</button>
+            <button class="filter-btn" data-filter="design">平面設計</button>
+            <button class="filter-btn" data-filter="video">影片作品</button>
+            <button class="filter-btn" data-filter="code">程式設計</button>
+            <button class="filter-btn" data-filter="prototype">原型設計</button>
+        </div>
+        
+        <div class="portfolio-items">
+            <!-- 平面設計作品 -->
+            <!-- <div class="portfolio-item" data-category="design">
+                <img src="image/NTPCADC.jpg" alt="平面設計作品" class="portfolio-item-img">
+                <div class="portfolio-item-content">
+                    <h3 class="portfolio-item-title">【Yes！人生】</h3>
+                    <span class="portfolio-item-category">平面設計</span>
+                    <p class="portfolio-item-description">新北廣告人/十二強</p>
+                    <a href="#" class="portfolio-item-link" data-bs-toggle="modal" data-bs-target="#modal-design1">查看詳情 <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="portfolio-item" data-category="design">
+                <img src="image/Fubon.jpg" alt="平面設計作品" class="portfolio-item-img">
+                <div class="portfolio-item-content">
+                    <h3 class="portfolio-item-title">【詐騙阿宏】</h3>
+                    <span class="portfolio-item-category">平面設計</span>
+                    <p class="portfolio-item-description">2024守護資產信守未來/信託實境-銅質獎</p>
+                    <a href="#" class="portfolio-item-link" data-bs-toggle="modal" data-bs-target="#modal-design2">查看詳情 <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div> -->
+            
+            <!-- 影片作品 -->
+            <div class="portfolio-item" data-category="video">
+                <div class="portfolio-video-container">
+                    <img src="image/NTPCADC.jpg" alt="Yes!人生" class="portfolio-item-img">
+                </div>
+                <div class="portfolio-item-content">
+                    <h3 class="portfolio-item-title">【Yes！人生】</h3>
+                    <span class="portfolio-item-category">影片作品</span>
+                    <p class="portfolio-item-description">新北廣告人/十二強</p>
+                    <a href="#" class="portfolio-item-link" data-bs-toggle="modal" data-bs-target="#modal-design1">查看詳情 <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="portfolio-item" data-category="video">
+                <div class="portfolio-video-container">
+                    <img src="image/Fubon.jpg" alt="詐騙阿宏" class="portfolio-item-img">
+                </div>
+                <div class="portfolio-item-content">
+                    <h3 class="portfolio-item-title">【詐騙阿宏】</h3>
+                    <span class="portfolio-item-category">影片作品</span>
+                    <p class="portfolio-item-description">2024守護資產信守未來/信託實境-銅質獎</p>
+                    <a href="#" class="portfolio-item-link" data-bs-toggle="modal" data-bs-target="#modal-design2">查看詳情 <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            
+            <!-- 程式設計作品 -->
+            <div class="portfolio-item" data-category="code">
+                <img src="image/Java Certificate.jpg" alt="Java程式設計" class="portfolio-item-img">
+                <div class="portfolio-item-content">
+                    <h3 class="portfolio-item-title">Java 程式作品</h3>
+                    <span class="portfolio-item-category">程式設計</span>
+                    <p class="portfolio-item-description">Java程式開發展示</p>
+                    <a href="#" class="portfolio-item-link" data-bs-toggle="modal" data-bs-target="#modal-code1">查看詳情 <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- 原型設計作品 -->
+            <!-- <div class="portfolio-item" data-category="prototype">
+                <img src="image/RWD Certificate.jpg" alt="原型設計" class="portfolio-item-img">
+                <div class="portfolio-item-content">
+                    <h3 class="portfolio-item-title">網頁原型設計</h3>
+                    <span class="portfolio-item-category">原型設計</span>
+                    <p class="portfolio-item-description">響應式網頁原型設計</p>
+                    <a href="#" class="portfolio-item-link" data-bs-toggle="modal" data-bs-target="#modal-prototype1">查看詳情 <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div> -->
+            
+            <!-- Figma原型 -->
+            <!-- <div class="portfolio-item" data-category="prototype">
+                <img src="image/0xchaLogo.webp" alt="Figma原型" class="portfolio-item-img">
+                <div class="portfolio-item-content">
+                    <h3 class="portfolio-item-title">Figma原型設計</h3>
+                    <span class="portfolio-item-category">原型設計</span>
+                    <p class="portfolio-item-description">使用Figma設計的互動原型</p>
+                    <a href="#" class="portfolio-item-link" data-bs-toggle="modal" data-bs-target="#modal-figma">查看詳情 <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div> -->
+        </div>
+    </section>
+    
+    <!-- 模态框 -->
+    <!-- Yes!人生模态框 -->
+    <div class="modal fade" id="modal-design1" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">【Yes！人生】</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="ratio ratio-16x9">
+                        <img src="image/NTPCADC.jpg" alt="Yes!人生">
+                    </div>
+                    <h4>新北廣告人/十二強</h4>
+                    <p>
+                        這部影片作品是我參加新北廣告人大賽的參賽作品，經過激烈競爭後成功入圍十二強。影片以正向積極的生活態度為核心，透過視覺敘事傳達「Yes！人生」的理念，鼓勵人們面對生活中的挑戰時保持樂觀。
+                    </p>
+                    <p>
+                        在製作過程中，我注重影片的節奏感和情感表達，使用了多樣的拍攝手法和後期製作技巧，使整體視覺效果既現代又富有感染力。這次比賽也讓我對影片製作和商業廣告有了更深入的理解。
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <a href="https://youtu.be/FvHjpDHZheI?si=476wGRWoyI6Ovgwl" target="_blank" class="btn btn-primary me-2">在YouTube觀看</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="modal-design2" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">【詐騙阿宏】</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="ratio ratio-16x9">
+                        <img src="image/Fubon.jpg" alt="詐騙阿宏">
+                    </div>
+                    <h4>2024守護資產信守未來/信託實境-銅質獎</h4>
+                    <p>
+                        本影片作品以「詐騙阿宏」為主題，參加2024守護資產信守未來競賽，並榮獲信託實境組銅質獎。影片通過引人入勝的故事情節和視覺效果，提醒大眾關注防詐騙議題，同時宣導資產信託的重要性。
+                    </p>
+                    <p>
+                        我在影片製作中融入了現代社會常見的詐騙手法，通過生動的劇情演繹和後期剪輯，突顯出信託服務的保障作用，希望能以創意方式提高人們的防詐意識，保護個人財產安全。
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <a href="https://youtu.be/TYDBLesjPME?si=JJzgN0yZVT1k1rtq" target="_blank" class="btn btn-primary me-2">在YouTube觀看</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 影片作品模态框 -->
+    <div class="modal fade" id="modal-video1" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">3D列印教學</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <video src="image/muza.mp4" controls class="w-100"></video>
+                    <h4>木柵國小3D列印社課程展示</h4>
+                    <p>
+                        這段影片展示了我在木柵國小3D列印社擔任外聘教師時的教學成果。影片記錄了小學生們學習使用Tinkercad進行3D建模設計的過程，以及他們完成的作品。
+                    </p>
+                    <p>
+                        透過這門課程，學生們不僅學習到了基礎3D建模技術，還培養了空間思維和創意表達能力。課程設計融合了理論與實踐，讓孩子們能夠親手將自己的想法轉化為實體模型。
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 程式設計模态框 -->
+    <div class="modal fade" id="modal-code1" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Java 程式作品</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="image/Java Certificate.jpg" alt="Java程式設計">
+                    <h4>Java程式開發展示</h4>
+                    <p>
+                        這是我使用Java開發的應用程式，展示了我在程式設計方面的專業能力。我通過TQC+程式語言Java認證（證書編號：1130102），證明了我對Java程式語言的熟練掌握。
+                    </p>
+                    <p>
+                        在這個項目中，我運用了物件導向程式設計原則，實現了功能完善、結構清晰的應用程式。通過這個項目，我不僅提升了技術能力，還培養了解決複雜問題的思維方式。
+                    </p>
+                    <pre class="bg-light text-primary p-3 mt-3">
+// Java示例代碼
+public class DemoApplication {
+    public static void main(String[] args) {
+        System.out.println("Welcome to my Java portfolio!");
+        
+        // 創建並運行示範項目
+        Project myProject = new Project("Portfolio Demo");
+        myProject.start();
+    }
+}
+                    </pre>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 原型設計模态框 -->
+    <div class="modal fade" id="modal-prototype1" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">網頁原型設計</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="image/RWD Certificate.jpg" alt="原型設計">
+                    <h4>響應式網頁原型設計</h4>
+                    <p>
+                        這是我設計的網頁原型，展示了我在響應式網頁設計方面的能力。我通過TQC+響應式網頁設計與製作認證（證書編號：1130522），證明了我在網頁設計領域的專業水準。
+                    </p>
+                    <p>
+                        這個原型特別注重使用者體驗和響應式佈局，確保網站在不同設備上都能提供最佳的瀏覽體驗。我運用了現代網頁技術和設計原則，創造出既美觀又實用的網頁界面。
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Figma模态框 -->
+    <div class="modal fade" id="modal-figma" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Figma原型設計</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="ratio ratio-16x9">
+                        <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" src="https://embed.figma.com/proto/bfjP8rblzKwOFEck4N7nBP/Untitled?node-id=2-12&starting-point-node-id=2%3A12&embed-host=share" allowfullscreen></iframe>
+                    </div>
+                    <h4 class="mt-3">互動式原型設計</h4>
+                    <p>
+                        這是我使用Figma設計的互動原型，展示了我在UI/UX設計方面的專業能力。這個原型關注用戶體驗和視覺美感，通過精心設計的交互方式，為用戶提供直觀且愉悅的使用體驗。
+                    </p>
+                    <p>
+                        在設計過程中，我注重色彩搭配、排版結構和交互流程，確保整體設計既美觀又實用。透過Figma平台，我能夠高效地將設計理念轉化為可互動的原型，方便與團隊成員和客戶進行溝通。
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 分類篩選功能
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+            
+            // YouTube影片錯誤處理
+            const iframes = document.querySelectorAll('iframe[src*="youtube.com"]');
+            iframes.forEach(iframe => {
+                iframe.addEventListener('error', function() {
+                    const errorDiv = document.createElement('div');
+                    errorDiv.className = 'alert alert-warning';
+                    errorDiv.innerHTML = '影片載入失敗。請<a href="' + iframe.src + '" target="_blank">點擊此處</a>在YouTube觀看。';
+                    iframe.parentNode.appendChild(errorDiv);
+                });
+            });
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // 移除所有按鈕的active狀態
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // 添加當前按鈕的active狀態
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    
+                    portfolioItems.forEach(item => {
+                        if (filter === 'all') {
+                            item.classList.remove('hidden');
+                        } else {
+                            if (item.getAttribute('data-category') === filter) {
+                                item.classList.remove('hidden');
+                            } else {
+                                item.classList.add('hidden');
+                            }
+                        }
+                    });
+                });
+            });
+            
+            // 自動播放影片
+            const videos = document.querySelectorAll('.portfolio-video');
+            
+            // 在視窗中顯示時播放影片
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.play();
+                    } else {
+                        entry.target.pause();
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            videos.forEach(video => {
+                observer.observe(video);
+            });
+        });
+    </script>
+</body>
+</html>

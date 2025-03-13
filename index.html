@@ -4,12 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>凌晨有嘻哈 Hip-Hop in the early hours</title>
+  <title>林辰禧 | LIN CHEN XI - 個人作品集與履歷</title>
+  <meta name="description" content="林辰禧的個人網站，展示我在活動企劃、設計和編程方面的技能與經驗">
   <link rel="stylesheet" href="normalize.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <link
     href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Holtwood+One+SC&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans+TC:wght@100..900&family=Noto+Serif+TC:wght@200..900&family=Syne:wght@400..800&display=swap"
     rel="stylesheet">
@@ -21,22 +23,26 @@
 <body>
   <section id="top" class="hero">
     <div class="hero-content">
-      <div class="photo-container">
-        <img src="image/self-image.jpg" alt="Profile photo" class="profile-photo">
+      <div class="photo-container" data-aos="fade-down" data-aos-delay="200">
+        <img src="image/self-image.jpg" alt="林辰禧個人照片" class="profile-photo">
       </div>
-      <div class="hero-title holtwood-one-sc-regular">PORTFOLIO</div>
-      <div class="hero-subtitle holtwood-one-sc-regular"><br>CODING<br>EVENT<br>PLANNING</div>
+      <div class="hero-title holtwood-one-sc-regular" data-aos="fade-up" data-aos-delay="400">PORTFOLIO</div>
+      <div class="hero-subtitle holtwood-one-sc-regular" data-aos="fade-up" data-aos-delay="600"><br>CODING<br>EVENT<br>PLANNING</div>
     </div>
-    <div class="description-container">
+    <div class="description-container" data-aos="fade-up" data-aos-delay="800">
       <div class="description">
         我熱愛旅行，並且接觸認識不同的文化<br>
         目前正在學習華語文教學與越南語<br>
         同時也享受擔任志工以及服務他人<br>
         從高中就接觸活動規劃的我，直至現在也仍在努力學習
       </div>
-      <!-- <div class="remark">
-        本網頁目前僅供電腦瀏覽，林辰禧版權所有。
-      </div> -->
+      <div class="skills-container">
+        <span class="skill-tag">活動策劃</span>
+        <span class="skill-tag">程式開發</span>
+        <span class="skill-tag">平面設計</span>
+        <span class="skill-tag">志願服務</span>
+        <span class="skill-tag">跨文化交流</span>
+      </div>
     </div>
   </section>
 
@@ -61,6 +67,9 @@
           <li class="nav-item py-2">
             <a class="nav-link" href="#Portfolio">特別經歷</a>
           </li>
+          <li class="nav-item py-2">
+            <a class="nav-link" href="expool.html">經驗池</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -69,35 +78,36 @@
   <section id="about" class="section py-md-5">
     <div class="container">
       <div class="row align-items-center mb-4">
-        <div class="col-lg-6 col-md-12 text-center text-lg-start">
+        <div class="col-lg-6 col-md-12 text-center text-lg-start" data-aos="fade-right" data-aos-duration="1000">
           <h2 class="about-title">哈囉，<br>我是林辰禧！</h2>
-          <p class="about-content mt-3">
-            我目前正就讀世新大學資訊傳播學系，對活動企劃與跨文化交流有高度熱忱。擔任系學會副會長時，策畫數場小活動以及跨系聖誕舞會，同時也兼任IG社群經營的工作。此外我同時也是志工社團幹部，經常要辦活動的我擅長創意發。我相信活動是連結人與故事的橋樑，期待用心策劃每個細節，為參與者帶來難忘的體驗。
+          <p class="about-content mt-4">
+            我目前正就讀世新大學資訊傳播學系，對活動企劃與跨文化交流有高度熱忱。擔任系學會副會長時，策畫數場小活動以及跨系聖誕舞會，同時也兼任IG社群經營的工作。此外我同時也是志工社團幹部，經常要辦活動的我擅長創意發想。我相信活動是連結人與故事的橋樑，期待用心策劃每個細節，為參與者帶來難忘的體驗。
           </p>
           <div class="contact mt-4">
             <h4>Contact me</h4>
-            <a class="content" href="tel:0903294899"><i class="fa-solid fa-phone me-3"></i>0903 294 899</a><br>
-            <a class="content" href="mailto:zxc90315zxc10315123@gmail.com" target="_blank"><i
-                class="fa-solid fa-envelope me-3"></i>zxc90315zxc10315123@gmail.com</a><br>
-            <a class="content" href="https://line.me/ti/p/8rLQ35Siac" target="_blank"><i
-                class="fa-brands fa-line me-3"></i>凌晨嘻哈</a>
+            <a class="content" href="tel:0903294899"><i class="fa-solid fa-phone"></i>0903 294 899</a>
+            <a class="content" href="mailto:zxc90315zxc10315123@gmail.com"><i class="fa-solid fa-envelope"></i>zxc90315zxc10315123@gmail.com</a>
+            <a class="content" href="https://line.me/ti/p/8rLQ35Siac" target="_blank"><i class="fa-brands fa-line"></i>凌晨嘻哈</a>
           </div>
         </div>
-        <div class="col-lg-6 img-fluid mt-5 col-sm-0">
-          <img src="image/self-image2.jpg" alt="" style="z-index: -1;" id="about-img">
+        <div class="col-lg-6 img-fluid mt-5 col-sm-0" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+          <img src="image/self-image2.jpg" alt="林辰禧個人照片" id="about-img">
         </div>
       </div>
     </div>
   </section>
 
   <section id="expe" class="section">
+    <div class="section-heading" data-aos="fade-up" data-aos-duration="800">
+      <h2>我的專業經歷</h2>
+    </div>
     <div class="row">
       <div class="col"></div>
       <div class="col-6 col-md-10 col-sm-12">
         <section style="background-color: #2d4234;">
           <div class="container py-5">
             <div class="main-timeline">
-              <div class="timeline left">
+              <div class="timeline left" data-aos="fade-right" data-aos-duration="800">
                 <div class="card">
                   <div class="card-body p-4">
                     <h3>2024-Recent</h3>
@@ -134,7 +144,7 @@
                   </div>
                 </div>
               </div>
-              <div class="timeline right">
+              <div class="timeline right" data-aos="fade-left" data-aos-duration="800" data-aos-delay="100">
                 <div class="card">
                   <div class="card-body p-4">
                     <h3>2024-Recent</h3>
@@ -170,7 +180,7 @@
                   </div>
                 </div>
               </div>
-              <div class="timeline left">
+              <div class="timeline left" data-aos="fade-right" data-aos-duration="800" data-aos-delay="200">
                 <div class="card">
                   <div class="card-body p-4">
                     <h3>2024-Recent</h3>
@@ -206,7 +216,7 @@
                   </div>
                 </div>
               </div>
-              <div class="timeline right">
+              <div class="timeline right" data-aos="fade-left" data-aos-duration="800" data-aos-delay="300">
                 <div class="card">
                   <div class="card-body p-4">
                     <h3>2023-Recent</h3>
@@ -244,7 +254,7 @@
                   </div>
                 </div>
               </div>
-              <div class="timeline left">
+              <div class="timeline left" data-aos="fade-right" data-aos-duration="800" data-aos-delay="400">
                 <div class="card">
                   <div class="card-body p-4">
                     <h3>2023-2024</h3>
@@ -282,7 +292,7 @@
                   </div>
                 </div>
               </div>
-              <div class="timeline right">
+              <div class="timeline right" data-aos="fade-left" data-aos-duration="800" data-aos-delay="500">
                 <div class="card">
                   <div class="card-body p-4">
                     <h3>2020-2021</h3>
@@ -325,14 +335,15 @@
       </div>
       <div class="col"></div>
     </div>
-
   </section>
 
   <section id="Portfolio" class="section">
-    <div class="container">
+    <div class="section-heading" data-aos="fade-up" data-aos-duration="800">
       <h2>屬於我的特別經歷</h2>
-      <h3>專業證照</h3>
-      <div id="carousel-certificate" class="carousel slide" data-bs-ride="carousel">
+    </div>
+    <div class="container">
+      <h3 data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">專業證照</h3>
+      <div id="carousel-certificate" class="carousel slide" data-bs-ride="carousel" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#carousel-certificate" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
           <button type="button" data-bs-target="#carousel-certificate" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -363,8 +374,8 @@
         </button>
       </div>
 
-      <h3 class="mt-5">競賽經驗</h3>
-      <div id="carousel-competition" class="carousel slide" data-bs-ride="carousel">
+      <h3 class="mt-5" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">競賽經驗</h3>
+      <div id="carousel-competition" class="carousel slide" data-bs-ride="carousel" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#carousel-competition" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
           <button type="button" data-bs-target="#carousel-competition" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -394,81 +405,43 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div>
-
-      <!-- <h3 class="mt-5">旅遊經驗</h3>
-      <div id="carousel-travel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carousel-travel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carousel-travel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="image/temp.webp" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>【Yes！人生】</h5>
-              <p>新北廣告人/十二強</p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img src="image/temp.webp" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>【詐騙阿宏】</h5>
-              <p>2024守護資產信守未來/信託實境-銅質獎</p>
-            </div>
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-travel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carousel-travel" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div> -->
-
-      <!-- <h3 class="mt-5">活動經驗</h3>
-      <div id="carousel-activities" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carousel-activities" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carousel-activities" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="image/temp.webp" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>【Yes！人生】</h5>
-              <p>新北廣告人/十二強</p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img src="image/temp.webp" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>【詐騙阿宏】</h5>
-              <p>2024守護資產信守未來/信託實境-銅質獎</p>
-            </div>
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-activities" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carousel-activities" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div> -->
     </div>
   </section>
 
   <footer>
-    <p>&copy; <span id="current-year"></span> LIN CHEN XI</p>
+    <div class="container">
+      <div class="social-links">
+        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+      </div>
+      <p class="text-center">&copy; <span id="current-year"></span> LIN CHEN XI, All Rights Reserved.</p>
+    </div>
   </footer>
 
   <button id="scroll-top-btn">↑</button>
 
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script src="script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // 初始化AOS動畫庫
+    AOS.init({
+      duration: 800,
+      once: true
+    });
+
+    // 導航欄滾動效果
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+  </script>
 </body>
 
 </html>
