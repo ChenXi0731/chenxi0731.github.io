@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>減塑行為趨勢互動圖表</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h2>台灣民眾減塑行為趨勢（2018–2024）</h2>
+    <canvas id="plasticChart" width="800" height="400"></canvas>
+    <script>
+        const ctx = document.getElementById('plasticChart').getContext('2d');
+        const data = {
+            labels: [2018, 2019, 2020, 2021, 2022, 2023, 2024],
+            datasets: [
+                {label: "使用環保袋", data: [60, 65, 70, 75, 80, 83, 85], fill: false, tension: 0.1}, {label: "拒用塑膠吸管", data: [45, 50, 55, 60, 66, 70, 72], fill: false, tension: 0.1}, {label: "購買裸裝商品", data: [30, 35, 40, 48, 55, 60, 63], fill: false, tension: 0.1}, {label: "自備餐具", data: [25, 30, 38, 45, 52, 55, 58], fill: false, tension: 0.1}, {label: "自備水瓶", data: [50, 55, 60, 68, 73, 75, 77], fill: false, tension: 0.1}
+            ]
+        };
+        const config = {
+            type: 'line',
+            data: data,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: '台灣民眾常見減塑行為比例（2018–2024）'
+                    }
+                },
+                scales: {
+                    y: {
+                        min: 0,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: '比例 (%)'
+                        }
+                    }
+                }
+            }
+        };
+        new Chart(ctx, config);
+    </script>
+</body>
+</html>
