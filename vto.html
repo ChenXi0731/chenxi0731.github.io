@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>華語「V+見」語法點學習遊戲</title>
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #e74c3c;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .explanation {
+            background-color: #f9f3e5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .explanation h2 {
+            color: #e67e22;
+            margin-top: 0;
+        }
+        .example {
+            background-color: #e8f4f8;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .game-container {
+            margin-top: 20px;
+        }
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .score {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2980b9;
+        }
+        .question {
+            background-color: #eaf2f8;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        .option-btn {
+            background-color: #3498db;
+            color: white;
+        }
+        .option-btn:hover {
+            background-color: #2980b9;
+        }
+        .next-btn {
+            background-color: #2ecc71;
+            color: white;
+            margin-top: 15px;
+            display: none;
+            width: 100%;
+        }
+        .next-btn:hover {
+            background-color: #27ae60;
+        }
+        .feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            display: none;
+        }
+        .correct {
+            background-color: #d5f5e3;
+            color: #27ae60;
+        }
+        .incorrect {
+            background-color: #fadbd8;
+            color: #e74c3c;
+        }
+        .game-over {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .restart-btn {
+            background-color: #e74c3c;
+            color: white;
+            margin-top: 15px;
+        }
+        .restart-btn:hover {
+            background-color: #c0392b;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background-color: #3498db;
+            width: 0%;
+            transition: width 0.5s;
+        }
+        .chinese {
+            font-size: 1.1em;
+        }
+        .tab-buttons {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        .tab-btn {
+            padding: 10px 15px;
+            border: none;
+            background-color: #ecf0f1;
+            cursor: pointer;
+            flex: 1;
+        }
+        .tab-btn.active {
+            background-color: #3498db;
+            color: white;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>「V+見」語法點學習遊戲</h1>
+        
+        <div class="tab-buttons">
+            <button class="tab-btn active" onclick="openTab('explanation')">語法說明</button>
+            <button class="tab-btn" onclick="openTab('game')">開始遊戲</button>
+        </div>
+        
+        <div id="explanation" class="tab-content active">
+            <div class="explanation">
+                <h2>「V+見」語法點說明</h2>
+                <p>「V+見」是華語文中「動詞+見」的用法，表示「看到」、「見到」某人或某物後產生的結果或經驗。</p>
+                <p>這個語法可以表達：</p>
+                <ul>
+                    <li>看到後產生的感受</li>
+                    <li>因見到而引起的反應</li>
+                    <li>見到某人/物後的評價或判斷</li>
+                </ul>
+                
+                <h3>基本結構</h3>
+                <p>動詞 + 見</p>
+                
+                <div class="example">
+                    <p><span class="chinese">聽見：聽 + 見 → 用耳朵感知到聲音</span></p>
+                    <p>例：我聽見有人在門外說話。</p>
+                </div>
+                
+                <div class="example">
+                    <p><span class="chinese">看見：看 + 見 → 用眼睛察覺到某人或某物</span></p>
+                    <p>例：我看見一隻鳥飛過天空。</p>
+                </div>
+                
+                <h3>常見用法</h3>
+                <ul>
+                    <li>表達感官感知：<span class="chinese">聽見、看見、摸見、聞見、嚐見</span>（描述透過感官所獲得的直接經驗）</li>
+                    <li>表達認知或判斷：<span class="chinese">看見（問題的本質）、聽見（言下之意）</span>（理解或領悟到某事物）</li>
+                    <li>表達發現或遇見：<span class="chinese">碰見、遇見、撞見</span>（偶然地遇到人或事物）</li>
+                </ul>
+            </div>
+            <button class="option-btn" onclick="openTab('game')">開始遊戲</button>
+        </div>
+        
+        <div id="game" class="tab-content">
+            <div class="game-container">
+                <div class="game-header">
+                    <div class="score">分數: <span id="score">0</span></div>
+                    <div class="score">問題: <span id="questionNumber">1</span>/<span id="totalQuestions">10</span></div>
+                </div>
+                
+                <div class="progress-bar">
+                    <div class="progress" id="progress"></div>
+                </div>
+                
+                <div class="question" id="question">
+                    <!-- 問題將在這裡動態插入 -->
+                </div>
+                
+                <div class="options" id="options">
+                    <!-- 選項將在這裡動態插入 -->
+                </div>
+                
+                <div class="feedback" id="feedback">
+                    <!-- 回饋訊息將在這裡動態插入 -->
+                </div>
+                
+                <button class="next-btn" id="nextBtn">下一題</button>
+                
+                <div class="game-over" id="gameOver" style="display:none;">
+                    <h2>遊戲結束!</h2>
+                    <p>你的最終得分: <span id="finalScore">0</span>/<span id="maxScore">10</span></p>
+                    <button class="restart-btn" onclick="restartGame()">再玩一次</button>
+                    <button class="option-btn" onclick="openTab('explanation')">回到說明</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 題目資料
+        const questions = [
+            {
+                text: "「我________教室裡有學生在讀書。」哪個選項是正確的「V+見」用法？",
+                options: ["看往", "看到", "看見", "看出"],
+                correct: 2,
+                explanation: "「看見」是正確的「V+見」形式，表示用眼睛察覺到某人或某物。"
+            },
+            {
+                text: "「昨天我在公園裡________王老師。」哪個選項是正確的？",
+                options: ["碰到", "碰過", "碰見", "碰上"],
+                correct: 2,
+                explanation: "「碰見」是正確的「V+見」形式，表示偶然遇到某人。"
+            },
+            {
+                text: "哪一個不屬於「V+見」的語法結構？",
+                options: ["聽見", "看見", "摸見", "推測"],
+                correct: 3,
+                explanation: "「推測」不是「V+見」的語法結構，其他三個選項都是感官動詞加上「見」。"
+            },
+            {
+                text: "「我在街上________一位老朋友。」哪個選項最符合偶遇的意思？",
+                options: ["看見", "遇見", "發見", "注見"],
+                correct: 1,
+                explanation: "「遇見」是表達偶然遇到的「V+見」用法，最符合題意。"
+            },
+            {
+                text: "「我________了他的意思。」哪個選項最合適？",
+                options: ["聽見", "聽出", "聽到", "聽入"],
+                correct: 0,
+                explanation: "「聽見」表示通過聽覺感知到內容，符合題意。「聽出」更強調理解言下之意。"
+            },
+            {
+                text: "「他一________書中的錯誤就立刻指出來。」空格中應填入：",
+                options: ["看到", "看過", "看見", "看著"],
+                correct: 2,
+                explanation: "「看見」表示注意到或發現，符合題意。"
+            },
+            {
+                text: "下列哪一個「V+見」結構表示「通過嗅覺感知到」？",
+                options: ["嚐見", "摸見", "聞見", "視見"],
+                correct: 2,
+                explanation: "「聞見」是表示通過嗅覺感知到的「V+見」結構。"
+            },
+            {
+                text: "「我們在黑暗中什麼也________。」填入正確的「V+見」結構：",
+                options: ["望見", "看不見", "瞧見", "瞥見"],
+                correct: 1,
+                explanation: "「看不見」是「V+見」的否定形式，表示視力無法感知。"
+            },
+            {
+                text: "「我________窗外有鳥在唱歌。」哪個選項是正確的？",
+                options: ["看見", "聽見", "感見", "讀見"],
+                correct: 1,
+                explanation: "「聽見」表示通過聽覺感知到聲音，符合題意。"
+            },
+            {
+                text: "下列哪一個不是常見的「V+見」結構？",
+                options: ["看見", "聽見", "學見", "遇見"],
+                correct: 2,
+                explanation: "「學見」不是常見的「V+見」結構，其他三個都是。"
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answeredCurrent = false;
+
+        // 初始化遊戲
+        function initGame() {
+            currentQuestion = 0;
+            score = 0;
+            showQuestion();
+            document.getElementById('score').textContent = score;
+            document.getElementById('questionNumber').textContent = currentQuestion + 1;
+            document.getElementById('totalQuestions').textContent = questions.length;
+            document.getElementById('gameOver').style.display = 'none';
+            updateProgress();
+        }
+
+        // 顯示問題
+        function showQuestion() {
+            const question = questions[currentQuestion];
+            const questionElement = document.getElementById('question');
+            const optionsElement = document.getElementById('options');
+            
+            questionElement.innerHTML = `<p>${question.text}</p>`;
+            optionsElement.innerHTML = '';
+            
+            answeredCurrent = false;
+            document.getElementById('nextBtn').style.display = 'none';
+            document.getElementById('feedback').style.display = 'none';
+            
+            question.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.className = 'option-btn';
+                button.onclick = () => checkAnswer(index);
+                optionsElement.appendChild(button);
+            });
+            
+            updateProgress();
+        }
+
+        // 檢查答案
+        function checkAnswer(answerIndex) {
+            if (answeredCurrent) return;
+            
+            const question = questions[currentQuestion];
+            const options = document.querySelectorAll('.option-btn');
+            const feedbackElement = document.getElementById('feedback');
+            
+            answeredCurrent = true;
+            
+            options.forEach(btn => {
+                btn.disabled = true;
+            });
+            
+            if (answerIndex === question.correct) {
+                options[answerIndex].style.backgroundColor = '#27ae60';
+                feedbackElement.textContent = `正確! ${question.explanation}`;
+                feedbackElement.className = 'feedback correct';
+                score++;
+                document.getElementById('score').textContent = score;
+            } else {
+                options[answerIndex].style.backgroundColor = '#e74c3c';
+                options[question.correct].style.backgroundColor = '#27ae60';
+                feedbackElement.textContent = `不正確。${question.explanation}`;
+                feedbackElement.className = 'feedback incorrect';
+            }
+            
+            feedbackElement.style.display = 'block';
+            
+            if (currentQuestion < questions.length - 1) {
+                document.getElementById('nextBtn').style.display = 'block';
+            } else {
+                endGame();
+            }
+        }
+
+        // 下一題
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            currentQuestion++;
+            document.getElementById('questionNumber').textContent = currentQuestion + 1;
+            showQuestion();
+        });
+
+        // 結束遊戲
+        function endGame() {
+            document.getElementById('gameOver').style.display = 'block';
+            document.getElementById('finalScore').textContent = score;
+            document.getElementById('maxScore').textContent = questions.length;
+        }
+
+        // 重新開始遊戲
+        function restartGame() {
+            initGame();
+        }
+
+        // 更新進度條
+        function updateProgress() {
+            const progressPercent = ((currentQuestion + 1) / questions.length) * 100;
+            document.getElementById('progress').style.width = `${progressPercent}%`;
+        }
+
+        // 切換標籤頁
+        function openTab(tabName) {
+            const tabContents = document.getElementsByClassName('tab-content');
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove('active');
+            }
+            
+            const tabButtons = document.getElementsByClassName('tab-btn');
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove('active');
+            }
+            
+            document.getElementById(tabName).classList.add('active');
+            document.querySelector(`.tab-btn[onclick="openTab('${tabName}')"]`).classList.add('active');
+            
+            if (tabName === 'game') {
+                initGame();
+            }
+        }
+
+        // 初始化
+        initGame();
+    </script>
+</body>
+</html>
