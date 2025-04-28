@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>「V+見」語法點學習遊戲</title>
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #e74c3c;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .explanation {
+            background-color: #f9f3e5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .explanation h2 {
+            color: #e67e22;
+            margin-top: 0;
+        }
+        .example {
+            background-color: #e8f4f8;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .game-container {
+            margin-top: 20px;
+        }
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .score {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2980b9;
+        }
+        .question {
+            background-color: #eaf2f8;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        .option-btn {
+            background-color: #3498db;
+            color: white;
+        }
+        .option-btn:hover {
+            background-color: #2980b9;
+        }
+        .next-btn {
+            background-color: #2ecc71;
+            color: white;
+            margin-top: 15px;
+            display: none;
+            width: 100%;
+        }
+        .next-btn:hover {
+            background-color: #27ae60;
+        }
+        .feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            display: none;
+        }
+        .correct {
+            background-color: #d5f5e3;
+            color: #27ae60;
+        }
+        .incorrect {
+            background-color: #fadbd8;
+            color: #e74c3c;
+        }
+        .game-over {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .restart-btn {
+            background-color: #e74c3c;
+            color: white;
+            margin-top: 15px;
+        }
+        .restart-btn:hover {
+            background-color: #c0392b;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background-color: #3498db;
+            width: 0%;
+            transition: width 0.5s;
+        }
+        .japanese {
+            font-size: 1.1em;
+        }
+        .tab-buttons {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        .tab-btn {
+            padding: 10px 15px;
+            border: none;
+            background-color: #ecf0f1;
+            cursor: pointer;
+            flex: 1;
+        }
+        .tab-btn.active {
+            background-color: #3498db;
+            color: white;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>「V+見」語法點學習遊戲</h1>
+        
+        <div class="tab-buttons">
+            <button class="tab-btn active" onclick="openTab('explanation')">語法說明</button>
+            <button class="tab-btn" onclick="openTab('game')">開始遊戲</button>
+        </div>
+        
+        <div id="explanation" class="tab-content active">
+            <div class="explanation">
+                <h2>「V+見」語法點說明</h2>
+                <p>「V+見」是日語中「動詞て形+みる」的用法，表示「嘗試做某事」、「試著做看看」的意思。</p>
+                <p>這個語法可以表達：</p>
+                <ul>
+                    <li>嘗試一個動作或行為</li>
+                    <li>體驗某事</li>
+                    <li>試著做看看然後觀察結果</li>
+                </ul>
+                
+                <h3>基本結構</h3>
+                <p>動詞て形 + みる</p>
+                
+                <div class="example">
+                    <p><span class="japanese">食べる (たべる) → 食べて (たべて) + みる → 食べてみる (たべてみる)</span></p>
+                    <p>嘗試吃看看</p>
+                </div>
+                
+                <div class="example">
+                    <p><span class="japanese">行く (いく) → 行って (いって) + みる → 行ってみる (いってみる)</span></p>
+                    <p>嘗試去看看</p>
+                </div>
+                
+                <h3>使用場景</h3>
+                <ul>
+                    <li>當你想嘗試一種新的食物：<span class="japanese">このケーキを食べてみます。</span>（我試著吃這個蛋糕看看。）</li>
+                    <li>當你不確定某事是否可行：<span class="japanese">明日もう一度電話してみます。</span>（我明天再試著打電話看看。）</li>
+                    <li>建議某人嘗試：<span class="japanese">この本を読んでみてください。</span>（請試著閱讀這本書看看。）</li>
+                </ul>
+            </div>
+            <button class="option-btn" onclick="openTab('game')">開始遊戲</button>
+        </div>
+        
+        <div id="game" class="tab-content">
+            <div class="game-container">
+                <div class="game-header">
+                    <div class="score">分數: <span id="score">0</span></div>
+                    <div class="score">問題: <span id="questionNumber">1</span>/<span id="totalQuestions">10</span></div>
+                </div>
+                
+                <div class="progress-bar">
+                    <div class="progress" id="progress"></div>
+                </div>
+                
+                <div class="question" id="question">
+                    <!-- 問題將在這裡動態插入 -->
+                </div>
+                
+                <div class="options" id="options">
+                    <!-- 選項將在這裡動態插入 -->
+                </div>
+                
+                <div class="feedback" id="feedback">
+                    <!-- 回饋訊息將在這裡動態插入 -->
+                </div>
+                
+                <button class="next-btn" id="nextBtn">下一題</button>
+                
+                <div class="game-over" id="gameOver" style="display:none;">
+                    <h2>遊戲結束!</h2>
+                    <p>你的最終得分: <span id="finalScore">0</span>/<span id="maxScore">10</span></p>
+                    <button class="restart-btn" onclick="restartGame()">再玩一次</button>
+                    <button class="option-btn" onclick="openTab('explanation')">回到說明</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 題目資料
+        const questions = [
+            {
+                text: "將「食べる」(吃)轉換為「V+見」形式",
+                options: ["食べてみる", "食べみる", "食べるみる", "食べってみる"],
+                correct: 0,
+                explanation: "「食べる」的て形是「食べて」，所以正確答案是「食べてみる」(試著吃看看)"
+            },
+            {
+                text: "「私はこの店で寿司を________。」(我想在這家店試著吃壽司看看。)",
+                options: ["食べます", "食べてみます", "食べるみます", "食べでみます"],
+                correct: 1,
+                explanation: "表達「試著吃看看」，應該用「食べてみます」"
+            },
+            {
+                text: "將「行く」(去)轉換為「V+見」形式",
+                options: ["行くみる", "行きみる", "行ってみる", "行くってみる"],
+                correct: 2,
+                explanation: "「行く」的て形是「行って」，所以正確答案是「行ってみる」(試著去看看)"
+            },
+            {
+                text: "「この服を________。」(我想試穿這件衣服看看。)",
+                options: ["着ます", "着みます", "着てみます", "着るみます"],
+                correct: 2,
+                explanation: "「着る」(穿)的て形加上「みる」，正確形式是「着てみます」"
+            },
+            {
+                text: "將「書く」(寫)轉換為「V+見」形式",
+                options: ["書いてみる", "書くみる", "書きみる", "書かてみる"],
+                correct: 0,
+                explanation: "「書く」的て形是「書いて」，所以正確答案是「書いてみる」(試著寫看看)"
+            },
+            {
+                text: "「明日もう一度________。」(明天再試著打電話看看。)",
+                options: ["電話します", "電話みます", "電話してみる", "電話してみます"],
+                correct: 3,
+                explanation: "「電話する」的て形加上「みます」，正確形式是「電話してみます」"
+            },
+            {
+                text: "哪一個選項正確使用了「V+見」語法？",
+                options: ["新しい料理を作ります", "新しい料理を作るみます", "新しい料理を作ってみます", "新しい料理をみて作ります"],
+                correct: 2,
+                explanation: "正確使用「V+見」語法的是「作ってみます」(試著做看看)"
+            },
+            {
+                text: "「あなたも一緒に映画を________？」(你也要一起試著看電影嗎？)",
+                options: ["見る", "見てみる", "見みる", "見るみる"],
+                correct: 1,
+                explanation: "「見る」(看)的て形加上「みる」，正確形式是「見てみる」"
+            },
+            {
+                text: "將「聞く」(問、聽)轉換為「V+見」命令形式「~てみて」",
+                options: ["聞くみて", "聞いみて", "聞いてみて", "聞きみて"],
+                correct: 2,
+                explanation: "「聞く」的て形是「聞いて」，命令形式是「聞いてみて」(試著問問看)"
+            },
+            {
+                text: "「この本を________ください。」(請試著閱讀這本書看看。)",
+                options: ["読む", "読んでみて", "読みみて", "読むみて"],
+                correct: 1,
+                explanation: "「読む」(讀)的て形加上「みて」，正確的禮貌請求形式是「読んでみてください」"
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answeredCurrent = false;
+
+        // 初始化遊戲
+        function initGame() {
+            currentQuestion = 0;
+            score = 0;
+            showQuestion();
+            document.getElementById('score').textContent = score;
+            document.getElementById('questionNumber').textContent = currentQuestion + 1;
+            document.getElementById('totalQuestions').textContent = questions.length;
+            document.getElementById('gameOver').style.display = 'none';
+            updateProgress();
+        }
+
+        // 顯示問題
+        function showQuestion() {
+            const question = questions[currentQuestion];
+            const questionElement = document.getElementById('question');
+            const optionsElement = document.getElementById('options');
+            
+            questionElement.innerHTML = `<p>${question.text}</p>`;
+            optionsElement.innerHTML = '';
+            
+            answeredCurrent = false;
+            document.getElementById('nextBtn').style.display = 'none';
+            document.getElementById('feedback').style.display = 'none';
+            
+            question.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.className = 'option-btn';
+                button.onclick = () => checkAnswer(index);
+                optionsElement.appendChild(button);
+            });
+            
+            updateProgress();
+        }
+
+        // 檢查答案
+        function checkAnswer(answerIndex) {
+            if (answeredCurrent) return;
+            
+            const question = questions[currentQuestion];
+            const options = document.querySelectorAll('.option-btn');
+            const feedbackElement = document.getElementById('feedback');
+            
+            answeredCurrent = true;
+            
+            options.forEach(btn => {
+                btn.disabled = true;
+            });
+            
+            if (answerIndex === question.correct) {
+                options[answerIndex].style.backgroundColor = '#27ae60';
+                feedbackElement.textContent = `正確! ${question.explanation}`;
+                feedbackElement.className = 'feedback correct';
+                score++;
+                document.getElementById('score').textContent = score;
+            } else {
+                options[answerIndex].style.backgroundColor = '#e74c3c';
+                options[question.correct].style.backgroundColor = '#27ae60';
+                feedbackElement.textContent = `不正確。${question.explanation}`;
+                feedbackElement.className = 'feedback incorrect';
+            }
+            
+            feedbackElement.style.display = 'block';
+            
+            if (currentQuestion < questions.length - 1) {
+                document.getElementById('nextBtn').style.display = 'block';
+            } else {
+                endGame();
+            }
+        }
+
+        // 下一題
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            currentQuestion++;
+            document.getElementById('questionNumber').textContent = currentQuestion + 1;
+            showQuestion();
+        });
+
+        // 結束遊戲
+        function endGame() {
+            document.getElementById('gameOver').style.display = 'block';
+            document.getElementById('finalScore').textContent = score;
+            document.getElementById('maxScore').textContent = questions.length;
+        }
+
+        // 重新開始遊戲
+        function restartGame() {
+            initGame();
+        }
+
+        // 更新進度條
+        function updateProgress() {
+            const progressPercent = ((currentQuestion + 1) / questions.length) * 100;
+            document.getElementById('progress').style.width = `${progressPercent}%`;
+        }
+
+        // 切換標籤頁
+        function openTab(tabName) {
+            const tabContents = document.getElementsByClassName('tab-content');
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove('active');
+            }
+            
+            const tabButtons = document.getElementsByClassName('tab-btn');
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove('active');
+            }
+            
+            document.getElementById(tabName).classList.add('active');
+            document.querySelector(`.tab-btn[onclick="openTab('${tabName}')"]`).classList.add('active');
+            
+            if (tabName === 'game') {
+                initGame();
+            }
+        }
+
+        // 初始化
+        initGame();
+    </script>
+</body>
