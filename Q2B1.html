@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我生病了 - 闖關遊戲</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0;
+        }
+        .game-container {
+            max-width: 800px;
+            width: 90%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            min-height: 600px;
+        }
+        .header {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        .header h1 { font-size: 2em; margin-bottom: 10px; }
+        .score-board {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+        }
+        .score-item {
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 15px;
+            font-weight: bold;
+        }
+        #score-details-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid white;
+            padding: 5px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.8em;
+        }
+        .game-content { padding: 30px; }
+        .game-area { display: none; animation: fadeIn 0.5s ease-in; }
+        .game-area.active { display: block; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .level-selector { text-align: center; }
+        .level-btn {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            border-radius: 15px;
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .level-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .vocab-game { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .vocab-column { background: #f8f9fa; padding: 20px; border-radius: 15px; }
+        .vocab-item {
+            background: white; padding: 15px; margin: 10px 0; border-radius: 10px; cursor: pointer;
+            transition: all 0.3s; border: 2px solid transparent; text-align: center; font-size: 1.1em;
+        }
+        .vocab-item:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.1); transform: translateY(-2px); }
+        .vocab-item.selected { border-color: #74b9ff; background: #e3f2fd; }
+        .vocab-item.correct { border-color: #00b894; background: #d4edda; animation: bounce 0.6s; pointer-events: none; }
+        .vocab-item.wrong { border-color: #e17055; background: #f8d7da; animation: shake 0.6s; }
+        @keyframes bounce { 0%, 20%, 53%, 80%, 100% { transform: translate3d(0,0,0); } 40%, 43% { transform: translate3d(0, -20px, 0); } 70% { transform: translate3d(0, -10px, 0); } 90% { transform: translate3d(0, -4px, 0); } }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); } 20%, 40%, 60%, 80% { transform: translateX(5px); } }
+        .grammar-game { background: #f8f9fa; padding: 25px; border-radius: 15px; }
+        .question { background: white; padding: 20px; border-radius: 10px; margin-bottom: 20px; font-size: 1.2em; line-height: 1.6; }
+        .options { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        .option { background: white; border: 2px solid #e9ecef; padding: 15px; border-radius: 10px; cursor: pointer; text-align: center; transition: all 0.3s; }
+        .option:hover { border-color: #74b9ff; background: #e3f2fd; }
+        .option.correct { border-color: #00b894; background: #d4edda; }
+        .option.wrong { border-color: #e17055; background: #f8d7da; }
+        .control-buttons { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
+        .btn {
+            background: linear-gradient(135deg, #74b9ff, #0984e3); color: white; border: none; padding: 12px 25px;
+            border-radius: 10px; cursor: pointer; font-size: 1em; transition: all 0.3s;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .btn.secondary { background: linear-gradient(135deg, #636e72, #2d3436); }
+        .btn.success { background: linear-gradient(135deg, #00b894, #00a085); }
+        .progress-bar { background: #e9ecef; height: 8px; border-radius: 4px; margin: 20px 0; overflow: hidden; }
+        .progress-fill { background: linear-gradient(135deg, #00b894, #00a085); height: 100%; border-radius: 4px; transition: width 0.5s ease; }
+        .feedback { text-align: center; padding: 20px; margin: 20px 0; border-radius: 10px; font-size: 1.1em; font-weight: bold; }
+        .feedback.success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .feedback.error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .completion-screen { text-align: center; padding: 40px; }
+        .completion-screen h2 { color: #00b894; margin-bottom: 20px; font-size: 2em; }
+        .final-score { font-size: 1.5em; margin: 20px 0; color: #2d3436; }
+        .chinese-text { font-size: 1.3em; line-height: 1.8; margin: 10px 0; }
+        .vietnamese-text { color: #636e72; font-style: italic; margin: 5px 0; }
+        .pinyin { color: #74b9ff; font-size: 0.9em; margin: 5px 0; }
+        /* Modal Styles */
+        .modal {
+            display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
+            overflow: auto; background-color: rgba(0,0,0,0.5);
+            animation: fadeIn 0.3s;
+        }
+        .modal-content {
+            background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888;
+            width: 80%; max-width: 500px; border-radius: 15px;
+        }
+        .close-btn { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
+        .score-details-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .score-details-table th, .score-details-table td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+        .score-details-table th { background-color: #74b9ff; color: white; }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="header">
+            <button id="score-details-btn" onclick="showScoreDetails()">詳細分數</button>
+            <h1>我生病了 - 闖關遊戲</h1>
+            <p>視聽華語第二冊第一課</p>
+            <div class="score-board">
+                <div class="score-item">
+                    <div>總分 Tổng điểm</div>
+                    <div id="score">0</div>
+                </div>
+                <div class="score-item">
+                    <div>等級 Cấp độ</div>
+                    <div id="level">1</div>
+                </div>
+                <div class="score-item">
+                    <div>進度 Tiến độ</div>
+                    <div id="progress">0%</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-content">
+            <div id="main-menu" class="game-area active">
+                <h2 style="text-align: center; margin-bottom: 30px; color: #2d3436;">準備好挑戰了嗎？</h2>
+                <div class="level-selector">
+                    <button id="start-btn" class="level-btn" onclick="startLevel(1)">
+                        <div>開始挑戰等級1</div>
+                        <div>Bắt đầu Cấp độ 1</div>
+                    </button>
+                </div>
+            </div>
+
+            <div id="vocab-game" class="game-area">
+                <h2 style="text-align: center; margin-bottom: 10px;">第一關：詞彙配對 (Cấp 1: Ghép từ vựng)</h2>
+                <div class="progress-bar"><div class="progress-fill" id="vocab-progress" style="width: 0%"></div></div>
+                <div id="vocab-feedback" class="feedback" style="display: none;"></div>
+                <div class="vocab-game" id="vocab-container"></div>
+                <div class="control-buttons">
+                    <button class="btn secondary" onclick="showMainMenu()">返回主選單</button>
+                </div>
+            </div>
+
+            <div id="grammar-game" class="game-area">
+                <h2 style="text-align: center; margin-bottom: 10px;">第二關：文法練習 (Cấp 2: Luyện tập ngữ pháp)</h2>
+                <div class="progress-bar"><div class="progress-fill" id="grammar-progress" style="width: 0%"></div></div>
+                <div class="grammar-game">
+                    <div class="question" id="grammar-question"></div>
+                    <div class="options" id="grammar-options"></div>
+                </div>
+                <div id="grammar-feedback" class="feedback" style="display: none;"></div>
+                <div class="control-buttons">
+                    <button class="btn secondary" onclick="showMainMenu()">返回主選單</button>
+                    <button class="btn" id="next-grammar" onclick="nextGrammarQuestion()" style="display: none;">下一題</button>
+                </div>
+            </div>
+            
+            <div id="completion-screen" class="game-area">
+                <div class="completion-screen">
+                    <h2 id="completion-title">恭喜完成！</h2>
+                    <div class="final-score" id="final-score"></div>
+                    <div style="margin: 30px 0;">
+                        <div class="chinese-text" id="completion-text">你做得很好！繼續加油！</div>
+                        <div class="vietnamese-text" id="completion-viet-text">Bạn làm rất tốt! Hãy tiếp tục cố gắng!</div>
+                    </div>
+                    <button class="btn success" id="next-level-btn" onclick="startLevel(2)">挑戰等級2</button>
+                    <button class="btn secondary" onclick="showMainMenu()">返回主選單</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="score-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeScoreDetails()">&times;</span>
+            <h2>分數詳情 (Chi tiết điểm số)</h2>
+            <table class="score-details-table">
+                <thead>
+                    <tr>
+                        <th>等級</th>
+                        <th>關卡</th>
+                        <th>分數</th>
+                    </tr>
+                </thead>
+                <tbody id="score-details-body">
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+    // --- 遊戲數據 ---
+    const vocabData_L1 = [
+        { chinese: '生病', pinyin: 'shēngbìng', vietnamese: 'bị bệnh' },
+        { chinese: '週末', pinyin: 'zhōumò', vietnamese: 'cuối tuần' },
+        { chinese: '怎麼了', pinyin: 'zěnmele', vietnamese: 'sao thế?' },
+        { chinese: '舒服', pinyin: 'shūfú', vietnamese: 'thoải mái' },
+        { chinese: '醫生', pinyin: 'yīshēng', vietnamese: 'bác sĩ' },
+        { chinese: '感冒', pinyin: 'gǎnmào', vietnamese: 'cảm cúm' },
+        { chinese: '藥', pinyin: 'yào', vietnamese: 'thuốc' },
+        { chinese: '沒事兒', pinyin: 'méishìr', vietnamese: 'không sao' },
+    ];
+    const grammarQuestions_L1 = [
+        { question: '你這個週末要到哪裡去玩？', options: ['我沒到哪裡去', '我沒有要到哪裡去', '我不到哪裡去', '我沒到什麼地方'], correct: 1, explanation: '使用「沒有到哪裡去」表示沒有去任何地方' },
+        { question: '你有什麼事嗎？', options: ['我沒事什麼', '我沒什麼事', '我不什麼事', '我沒有事什麼'], correct: 1, explanation: '「沒什麼事」表示沒有什麼事情' },
+        { question: '那個電影不怎麼好看。這句話的意思是：', options: ['電影很好看', '電影不太好看', '電影很不好看', '不知道電影好不好看'], correct: 1, explanation: '「不怎麼」表示程度不高，即「不太」的意思' },
+        { question: '他明天_____回國了。', options: ['要', '就要', '想', '可以'], correct: 1, explanation: '「就要」表示即將發生的動作' },
+    ];
+
+    const vocabData_L2 = [
+        { chinese: '放假', pinyin: 'fàngjià', vietnamese: 'nghỉ phép' },
+        { chinese: '打算', pinyin: 'dǎsuàn', vietnamese: 'dự định' },
+        { chinese: '鄉下', pinyin: 'xiāngxià', vietnamese: 'nông thôn' },
+        { chinese: '也許', pinyin: 'yěxǔ', vietnamese: 'có lẽ' },
+        { chinese: '可能', pinyin: 'kěnéng', vietnamese: 'có thể' },
+        { chinese: '滑雪', pinyin: 'huáxuě', vietnamese: 'trượt tuyết' },
+        { chinese: '特別', pinyin: 'tèbié', vietnamese: 'đặc biệt' },
+        { chinese: '小心', pinyin: 'xiǎoxīn', vietnamese: 'cẩn thận' },
+    ];
+    const grammarQuestions_L2 = [
+        { question: '你放心，我已經開車____十年了', options: ['開', '開了', '駛了', '駕駛'], correct: 2, explanation: '出現「已經」表示直到現在十年了，所以要用兩個「了」' },
+        { question: '除了唱歌_____，他還會跳舞。', options: ['以外', '以內', '以前', '以後'], correct: 0, explanation: '「除了...以外」是固定搭配，表示 "besides"。' },
+        { question: '我功課做完了，_____你還沒做完？', options: ['怎麼', '什麼', '哪裡', '誰'], correct: 0, explanation: '「怎麼」在這裡帶有驚訝或詢問原因的語氣。' },
+        { question: '你要是想看電影，_____早點告訴我。', options: ['才', '就', '再', '也'], correct: 1, explanation: '「要是...就...」是假設條件的固定句式。' },
+    ];
+
+    // --- 遊戲狀態變數 ---
+    let gameState = {
+        currentLevel: 1,
+        activeGame: null, // 'vocab' or 'grammar'
+        levelScore: 0,
+        scores: {
+            level1: { vocab: 0, grammar: 0, completed: false },
+            level2: { vocab: 0, grammar: 0, completed: false }
+        },
+        // 用於遊戲內部追蹤
+        vocabPairs: [],
+        selectedVocab: null,
+        grammarData: [],
+        currentGrammarIndex: 0
+    };
+
+    // --- 核心遊戲流程 ---
+    function startLevel(level) {
+        gameState.currentLevel = level;
+        gameState.levelScore = 0;
+        
+        // 重置該等級的分數記錄
+        gameState.scores[`level${level}`].vocab = 0;
+        gameState.scores[`level${level}`].grammar = 0;
+        
+        updateScoreBoard();
+        initVocabGame();
+    }
+
+    function levelComplete() {
+        const level = gameState.currentLevel;
+        gameState.scores[`level${level}`].completed = true;
+        hideAllGameAreas();
+        
+        document.getElementById('completion-title').innerText = `恭喜完成等級 ${level}！`;
+        document.getElementById('final-score').innerText = `本級總分 (Tổng điểm cấp này): ${gameState.levelScore}`;
+        
+        const nextLevelBtn = document.getElementById('next-level-btn');
+        if (level === 1 && !gameState.scores.level2.completed) {
+            document.getElementById('completion-text').innerText = '準備好挑戰更難的等級了嗎？';
+            document.getElementById('completion-viet-text').innerText = 'Sẵn sàng thử thách cấp độ khó hơn chưa?';
+            nextLevelBtn.style.display = 'inline-block';
+            nextLevelBtn.onclick = () => startLevel(2);
+        } else {
+            document.getElementById('completion-text').innerText = '你已完成所有挑戰，太棒了！';
+            document.getElementById('completion-viet-text').innerText = 'Bạn đã hoàn thành tất cả thử thách, tuyệt vời!';
+            nextLevelBtn.style.display = 'none';
+        }
+        
+        document.getElementById('completion-screen').classList.add('active');
+        saveGameState();
+    }
+
+    // --- UI 更新 & 管理 ---
+    function updateScoreBoard() {
+        document.getElementById('score').textContent = gameState.levelScore;
+        document.getElementById('level').textContent = gameState.currentLevel;
+
+        let progress = 0;
+        if (gameState.activeGame === 'vocab') {
+            const matched = gameState.vocabPairs.filter(p => p.chinese.matched).length;
+            const total = gameState.vocabPairs.length;
+            if (total > 0) {
+                progress = (matched / total) * 50; // 詞彙佔50%
+            }
+        } else if (gameState.activeGame === 'grammar') {
+            const total = gameState.grammarData.length;
+            if (total > 0) {
+                progress = 50 + (gameState.currentGrammarIndex / total) * 50; // 文法佔50%
+            }
+        }
+        document.getElementById('progress').textContent = Math.round(progress) + '%';
+    }
+
+    function showMainMenu() {
+        hideAllGameAreas();
+        const startBtn = document.getElementById('start-btn');
+        if(gameState.scores.level1.completed && !gameState.scores.level2.completed) {
+            startBtn.innerHTML = '<div>開始挑戰等級2</div><div>Bắt đầu Cấp độ 2</div>';
+            startBtn.onclick = () => startLevel(2);
+        } else if (gameState.scores.level2.completed) {
+            startBtn.innerHTML = '<div>重新挑戰</div><div>Thử thách lại</div>';
+            startBtn.onclick = () => {
+                resetGame();
+                startLevel(1);
+            };
+        }
+        else {
+             startBtn.innerHTML = '<div>開始挑戰等級1</div><div>Bắt đầu Cấp độ 1</div>';
+             startBtn.onclick = () => startLevel(1);
+        }
+        document.getElementById('main-menu').classList.add('active');
+    }
+
+    function hideAllGameAreas() {
+        document.querySelectorAll('.game-area').forEach(area => area.classList.remove('active'));
+    }
+    
+    function showFeedback(elementId, message, type) {
+        const feedback = document.getElementById(elementId);
+        feedback.innerHTML = message;
+        feedback.className = `feedback ${type}`;
+        feedback.style.display = 'block';
+    }
+    
+    // --- 詞彙遊戲 (Vocab Game) ---
+    function initVocabGame() {
+        gameState.activeGame = 'vocab';
+        hideAllGameAreas();
+        document.getElementById('vocab-game').classList.add('active');
+        
+        const vocabData = gameState.currentLevel === 1 ? vocabData_L1 : vocabData_L2;
+        const shuffledVocab = [...vocabData].sort(() => Math.random() - 0.5).slice(0, 6);
+
+        const chineseWords = shuffledVocab.map((item, index) => ({ id: index, text: item.chinese, pinyin: item.pinyin, type: 'chinese', matched: false }));
+        const vietnameseWords = shuffledVocab.map((item, index) => ({ id: index, text: item.vietnamese, type: 'vietnamese', matched: false }));
+
+        gameState.vocabPairs = [{chinese: {matched: false}}]; // dummy for progress bar
+        renderVocabGame(chineseWords, vietnameseWords.sort(() => Math.random() - 0.5));
+        gameState.vocabPairs = chineseWords.map((c, i) => ({chinese: c, vietnamese: vietnameseWords[i]}));
+    }
+
+    function renderVocabGame(chineseWords, vietnameseWords) {
+        const container = document.getElementById('vocab-container');
+        container.innerHTML = `<div class="vocab-column"><h3 style="text-align:center;">中文</h3><div id="chinese-words"></div></div><div class="vocab-column"><h3 style="text-align:center;">越南文</h3><div id="vietnamese-words"></div></div>`;
+        const chineseContainer = document.getElementById('chinese-words');
+        const vietnameseContainer = document.getElementById('vietnamese-words');
+        
+        chineseWords.forEach(word => {
+            const div = document.createElement('div');
+            div.className = 'vocab-item';
+            div.innerHTML = `<div class="chinese-text">${word.text}</div><div class="pinyin">${word.pinyin}</div>`;
+            div.onclick = () => selectVocabItem(word, div);
+            chineseContainer.appendChild(div);
+        });
+        vietnameseWords.forEach(word => {
+            const div = document.createElement('div');
+            div.className = 'vocab-item';
+            div.innerHTML = `<div class="vietnamese-text">${word.text}</div>`;
+            div.onclick = () => selectVocabItem(word, div);
+            vietnameseContainer.appendChild(div);
+        });
+    }
+
+    function selectVocabItem(word, element) {
+        if (word.matched || (gameState.selectedVocab && gameState.selectedVocab.element === element)) return;
+        if (!gameState.selectedVocab || gameState.selectedVocab.word.type === word.type) {
+            if (gameState.selectedVocab) gameState.selectedVocab.element.classList.remove('selected');
+            gameState.selectedVocab = { word, element };
+            element.classList.add('selected');
+        } else {
+            checkVocabMatch(gameState.selectedVocab, { word, element });
+        }
+    }
+
+    function checkVocabMatch(first, second) {
+        document.querySelectorAll('#vocab-container .vocab-item').forEach(el => el.style.pointerEvents = 'none');
+        if (first.word.id === second.word.id) {
+            first.element.classList.add('correct');
+            second.element.classList.add('correct');
+            first.word.matched = true;
+            second.word.matched = true;
+            gameState.levelScore += 10;
+            gameState.scores[`level${gameState.currentLevel}`].vocab += 10;
+            showFeedback('vocab-feedback', '正確！', 'success');
+        } else {
+            first.element.classList.add('wrong');
+            second.element.classList.add('wrong');
+            showFeedback('vocab-feedback', '再試一次！', 'error');
+            setTimeout(() => {
+                first.element.classList.remove('wrong', 'selected');
+                second.element.classList.remove('wrong', 'selected');
+            }, 1000);
+        }
+        gameState.selectedVocab = null;
+        updateScoreBoard();
+        setTimeout(() => {
+            document.querySelectorAll('#vocab-container .vocab-item').forEach(el => el.style.pointerEvents = 'auto');
+            const allMatched = gameState.vocabPairs.every(p => p.chinese.matched);
+            if (allMatched) {
+                setTimeout(initGrammarGame, 1500); // 詞彙完成，自動進入文法
+            }
+        }, 1200);
+    }
+
+    // --- 文法遊戲 (Grammar Game) ---
+    function initGrammarGame() {
+        gameState.activeGame = 'grammar';
+        hideAllGameAreas();
+        document.getElementById('grammar-game').classList.add('active');
+        document.getElementById('grammar-feedback').style.display = 'none';
+
+        gameState.grammarData = gameState.currentLevel === 1 ? [...grammarQuestions_L1] : [...grammarQuestions_L2];
+        gameState.currentGrammarIndex = 0;
+        showGrammarQuestion();
+    }
+
+    function showGrammarQuestion() {
+        updateScoreBoard();
+        const questionData = gameState.grammarData[gameState.currentGrammarIndex];
+        document.getElementById('grammar-question').innerHTML = `<div class="chinese-text">${questionData.question}</div>`;
+        const optionsContainer = document.getElementById('grammar-options');
+        optionsContainer.innerHTML = '';
+        questionData.options.forEach((optionText, index) => {
+            const optionDiv = document.createElement('div');
+            optionDiv.className = 'option';
+            optionDiv.textContent = optionText;
+            optionDiv.onclick = () => checkGrammarAnswer(index, optionDiv);
+            optionsContainer.appendChild(optionDiv);
+        });
+        document.getElementById('next-grammar').style.display = 'none';
+        document.getElementById('grammar-feedback').style.display = 'none';
+    }
+
+    function checkGrammarAnswer(selectedIndex, selectedElement) {
+        const questionData = gameState.grammarData[gameState.currentGrammarIndex];
+        const options = document.querySelectorAll('#grammar-options .option');
+        options.forEach(opt => opt.onclick = null);
+
+        if (selectedIndex === questionData.correct) {
+            selectedElement.classList.add('correct');
+            gameState.levelScore += 15;
+            gameState.scores[`level${gameState.currentLevel}`].grammar += 15;
+            showFeedback('grammar-feedback', '答對了！', 'success');
+        } else {
+            selectedElement.classList.add('wrong');
+            options[questionData.correct].classList.add('correct');
+            showFeedback('grammar-feedback', `不對喔！說明：${questionData.explanation}`, 'error');
+        }
+        updateScoreBoard();
+        document.getElementById('next-grammar').style.display = 'inline-block';
+    }
+
+    function nextGrammarQuestion() {
+        gameState.currentGrammarIndex++;
+        if (gameState.currentGrammarIndex < gameState.grammarData.length) {
+            showGrammarQuestion();
+        } else {
+            levelComplete(); // 文法完成，結束本等級
+        }
+    }
+
+    // --- 分數 Modal & 狀態存儲 ---
+    function showScoreDetails() {
+        const modal = document.getElementById('score-modal');
+        const body = document.getElementById('score-details-body');
+        body.innerHTML = '';
+        for (let i = 1; i <= 2; i++) {
+            const levelData = gameState.scores[`level${i}`];
+            body.innerHTML += `
+                <tr>
+                    <td rowspan="2">等級 ${i}</td>
+                    <td>詞彙配對</td>
+                    <td>${levelData.vocab}</td>
+                </tr>
+                <tr>
+                    <td>文法練習</td>
+                    <td>${levelData.grammar}</td>
+                </tr>
+            `;
+        }
+        modal.style.display = "block";
+    }
+    
+    function closeScoreDetails() {
+        document.getElementById('score-modal').style.display = "none";
+    }
+
+    function saveGameState() {
+        localStorage.setItem('chineseGameProgress', JSON.stringify(gameState.scores));
+    }
+    
+    function loadGameState() {
+        const savedScores = localStorage.getItem('chineseGameProgress');
+        if (savedScores) {
+            gameState.scores = JSON.parse(savedScores);
+        }
+    }
+    
+    function resetGame() {
+        gameState.scores = {
+            level1: { vocab: 0, grammar: 0, completed: false },
+            level2: { vocab: 0, grammar: 0, completed: false }
+        };
+        saveGameState();
+    }
+
+    window.onclick = function(event) {
+        const modal = document.getElementById('score-modal');
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    window.onload = () => {
+        loadGameState();
+        showMainMenu();
+    };
+
+    </script>
+</body>
+</html>
